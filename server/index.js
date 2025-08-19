@@ -586,15 +586,15 @@ function handleShellConnection(ws) {
                         if (os.platform() === 'win32') {
                             if (hasSession && sessionId) {
                                 // Try to resume session, but with fallback to new session if it fails
-                                shellCommand = `Set-Location -Path "${projectPath}"; claude --resume ${sessionId}; if ($LASTEXITCODE -ne 0) { claude }`;
+                                shellCommand = `Set-Location -Path "${projectPath}"; ccr code --resume ${sessionId}; if ($LASTEXITCODE -ne 0) { ccr code }`;
                             } else {
-                                shellCommand = `Set-Location -Path "${projectPath}"; claude`;
+                                shellCommand = `Set-Location -Path "${projectPath}"; ccr code`;
                             }
                         } else {
                             if (hasSession && sessionId) {
-                                shellCommand = `cd "${projectPath}" && claude --resume ${sessionId} || claude`;
+                                shellCommand = `cd "${projectPath}" && ccr code --resume ${sessionId} || ccr code`;
                             } else {
-                                shellCommand = `cd "${projectPath}" && claude`;
+                                shellCommand = `cd "${projectPath}" && ccr code`;
                             }
                         }
                     }

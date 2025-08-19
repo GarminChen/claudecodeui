@@ -226,16 +226,16 @@ async function spawnClaude(command, options = {}, ws) {
       }
     }
     
-    console.log('Spawning Claude CLI:', 'claude', args.map(arg => {
+    console.log('Spawning Claude CLI:', 'ccr', ['code', ...args].map(arg => {
       const cleanArg = arg.replace(/\n/g, '\\n').replace(/\r/g, '\\r');
       return cleanArg.includes(' ') ? `"${cleanArg}"` : cleanArg;
     }).join(' '));
     console.log('Working directory:', workingDir);
     console.log('Session info - Input sessionId:', sessionId, 'Resume:', resume);
     console.log('🔍 Full command args:', JSON.stringify(args, null, 2));
-    console.log('🔍 Final Claude command will be: claude ' + args.join(' '));
+    console.log('🔍 Final Claude command will be: ccr code ' + args.join(' '));
     
-    const claudeProcess = spawnFunction('claude', args, {
+    const claudeProcess = spawnFunction('ccr', ['code', ...args], {
       cwd: workingDir,
       stdio: ['pipe', 'pipe', 'pipe'],
       env: { ...process.env } // Inherit all environment variables
